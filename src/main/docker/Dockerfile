@@ -9,4 +9,4 @@ EXPOSE 8082
 ENV TZ=PRC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #相当于在容器中用cmd命令执行jar包  指定外部配置文件 ENTRYPOINT命令比cmd先执行
-ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=pord"]
+ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=prod"]
