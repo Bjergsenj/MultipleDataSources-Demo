@@ -6,12 +6,18 @@ import com.example.demo.common.Response;
 import com.example.demo.dao.mapper.UserInfoMapper;
 import com.example.demo.model.UserInfo;
 import com.example.demo.service.iface.TestService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class TestServiceImpl implements TestService {
+
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @Autowired
     private UserInfoMapper userInfoMapper;
 
@@ -21,6 +27,8 @@ public class TestServiceImpl implements TestService {
         Response<UserInfo> response = new Response<>();
         response.setResult(userInfo);
         response.setMessage("yes");
+        //调用mq
+        rabbitTemplate.convertAndSend("directExchange", "directTest", userInfo);
         return response;
     }
 

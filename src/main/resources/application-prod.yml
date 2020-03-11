@@ -16,9 +16,13 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 spring:
-  jackson:
-    time-zone: Asia/Shanghai
-    date-format: yyyy-MM-dd HH:mm:ss
+  rabbitmq:
+    host: 112.126.60.148
+    port: 5672
+    username: admin
+    password: 123456
+    publisher-confirms: true
+    virtual-host: /
   freemarker:
     cache: false
     charset: utf-8
