@@ -7,6 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+
+/**
+ * description:统一封装返回结果
+ * create: 2020/3/12 18:50
+ *
+ * @author NieMingXin
+ * @version 1.0
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +29,7 @@ public class Response<T> implements Serializable {
     private T data;
 
     public static <T> Response<T> buildResponse(T data) {
-        return new Response<T>(true, ResultCode.FORMAL.value(), null, data);
+        return new Response<>(true, ResultCode.FORMAL.value(), null, data);
     }
 
     public void setResult(T data) {

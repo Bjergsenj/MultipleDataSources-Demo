@@ -7,6 +7,16 @@ package com.example.demo.common;
  * @author NieMingXin
  */
 public enum DataSourceType {
-
-        MASTER,SLAVE,PROD
+    /**
+     * 主库
+     */
+    MASTER,
+    /**
+     * 从库
+     */
+    SLAVE,
+    /**
+     * 生产库
+     */
+    PROD
 }

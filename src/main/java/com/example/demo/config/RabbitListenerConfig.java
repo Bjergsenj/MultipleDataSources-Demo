@@ -10,12 +10,12 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 import org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory;
 
 /**
+ * description:rabbitmq监听消息转换配置
+ * create: 2020/3/12 18:50
+ *
  * @author NieMingXin
  * @version 1.0
- * @description
- * @create 2020/3/11 20:51
  */
-
 @Configuration
 public class RabbitListenerConfig implements RabbitListenerConfigurer {
 

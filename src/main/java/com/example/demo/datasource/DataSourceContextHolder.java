@@ -12,18 +12,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DataSourceContextHolder {
 //    private static final String DEFAULT_DATASOURCE = "SlAVE_DATASOURCE";
-    private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
+    private static final ThreadLocal<String> CONTEXT_HOLDER = new ThreadLocal<>();
 
     public static void setDataSource(String dbType) {
         log.info("切换到" + dbType + "数据源");
-        contextHolder.set(dbType);
+        CONTEXT_HOLDER.set(dbType);
     }
 
     public static String getDataSource() {
-        return contextHolder.get();
+        return CONTEXT_HOLDER.get();
     }
 
     public static void clearDataSource() {
-        contextHolder.remove();
+        CONTEXT_HOLDER.remove();
     }
 }

@@ -10,7 +10,13 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * description: TestServiceImpl
+ * create: 2020/3/12 18:50
+ *
+ * @author NieMingXin
+ * @version 1.0
+ */
 @Service
 public class TestServiceImpl implements TestService {
 

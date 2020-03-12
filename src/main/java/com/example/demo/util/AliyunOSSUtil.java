@@ -23,7 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * description: 阿里云util
+ * create: 2020/3/12 18:50
+ *
+ * @author NieMingXin
+ * @version 1.0
+ */
 @Component
 public class AliyunOSSUtil {
 
@@ -49,7 +55,7 @@ public class AliyunOSSUtil {
      * @param fileTypeEnum: 文件类型枚举
      * @param bucketName:   oss桶名
      * @param storagePath:  储存文件夹路径,传null则为上传到根目录
-     * @param prefix:         #Bucket公网域名
+     * @param prefix:       #Bucket公网域名
      * @return java.util.List<java.lang.String>
      * @author niemingxin
      */
@@ -68,10 +74,10 @@ public class AliyunOSSUtil {
                 objectMetadata.setCacheControl("no-cache");
                 objectMetadata.setHeader("Pragma", "no-cache");
                 String substring = fileName.substring(fileName.lastIndexOf("."));
-                if ((substring.equalsIgnoreCase(".jpeg") ||
-                        substring.equalsIgnoreCase(".jpg") ||
-                        substring.equalsIgnoreCase(".png")) ||
-                        substring.equalsIgnoreCase(".webp")) {
+                if ((".jpeg".equalsIgnoreCase(substring) ||
+                        ".jpg".equalsIgnoreCase(substring) ||
+                        ".png".equalsIgnoreCase(substring)) ||
+                        ".webp".equalsIgnoreCase(substring)) {
                     objectMetadata.setContentType("image/jpg");
                 } else {
                     objectMetadata.setContentType(file.getContentType());
@@ -211,49 +217,6 @@ public class AliyunOSSUtil {
             resultName = UUID.randomUUID().toString().concat(FileTypeEnum.fromCode(code));
         }
         return resultName;
-    }
-
-    /**
-     * create: 2020/2/18 12:41
-     * description: 根据文件后缀设置Content-Type
-     *
-     * @param FilenameExtension:文件后缀
-     * @return java.lang.String
-     * @author niemingxin
-     */
-    private static String getcontentType(String FilenameExtension) {
-        if (FilenameExtension.equalsIgnoreCase(".bmp")) {
-            return "image/bmp";
-        }
-        if (FilenameExtension.equalsIgnoreCase(".gif")) {
-            return "image/gif";
-        }
-        if (FilenameExtension.equalsIgnoreCase(".jpeg") ||
-                FilenameExtension.equalsIgnoreCase(".jpg") ||
-                FilenameExtension.equalsIgnoreCase(".png")) {
-            return "image/jpg";
-        }
-        if (FilenameExtension.equalsIgnoreCase(".html")) {
-            return "text/html";
-        }
-        if (FilenameExtension.equalsIgnoreCase(".txt")) {
-            return "text/plain";
-        }
-        if (FilenameExtension.equalsIgnoreCase(".vsd")) {
-            return "application/vnd.visio";
-        }
-        if (FilenameExtension.equalsIgnoreCase(".pptx") ||
-                FilenameExtension.equalsIgnoreCase(".ppt")) {
-            return "application/vnd.ms-powerpoint";
-        }
-        if (FilenameExtension.equalsIgnoreCase(".docx") ||
-                FilenameExtension.equalsIgnoreCase(".doc")) {
-            return "application/msword";
-        }
-        if (FilenameExtension.equalsIgnoreCase(".xml")) {
-            return "text/xml";
-        }
-        return "image/jpg";
     }
 
 }

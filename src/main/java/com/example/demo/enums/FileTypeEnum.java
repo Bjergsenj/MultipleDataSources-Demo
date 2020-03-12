@@ -1,12 +1,32 @@
 package com.example.demo.enums;
 
-
+/**
+ * description:文件类型枚举
+ * create: 2020/3/12 18:50
+ *
+ * @author NieMingXin
+ * @version 1.0
+ */
 public enum FileTypeEnum {
-
+    /**
+     * 图片类型文件
+     */
     IMG(1, "图片", ".jpg"),
+    /**
+     * 音频类型文件
+     */
     AUDIO(2, "音频", ".mp3"),
+    /**
+     * 视频类型文件
+     */
     VIDEO(3, "视频", ".mp4"),
+    /**
+     * apk类型文件
+     */
     APP(4, "App包", ".apk"),
+    /**
+     * 其他类型文件
+     */
     OTHER(5, "其他", "");
 
     private Integer code;

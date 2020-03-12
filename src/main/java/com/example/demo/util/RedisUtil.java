@@ -10,11 +10,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * description: RedisUtil
+ * create: 2020/3/12 18:50
+ *
+ * @author NieMingXin
+ * @version 1.0
+ */
 @Component
 public final class RedisUtil {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
-    // =============================common============================
 
     /**
      * 指定缓存失效时间

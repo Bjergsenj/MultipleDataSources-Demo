@@ -3,11 +3,13 @@ package com.example.demo.exception;
 import com.example.demo.annotation.ResponseCode;
 import com.example.demo.common.ApiException;
 
+
 /**
+ * description: oss文件不存在异常
+ * create: 2020/3/12 18:50
+ *
  * @author NieMingXin
  * @version 1.0
- * @description oss文件不存在异常
- * @create 2020/2/18 12:31
  */
 @ResponseCode("E22222")
 public class OSSNoSuchKeyException extends ApiException {

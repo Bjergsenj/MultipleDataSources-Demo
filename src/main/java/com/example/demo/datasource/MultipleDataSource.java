@@ -26,7 +26,7 @@ import java.util.HashMap;
  * @author NieMingXin
  */
 @Configuration
-public class MutiplyDataSource {
+public class MultipleDataSource {
 
 
     @Bean(name = "dataSourceMaster")
@@ -64,9 +64,11 @@ public class MutiplyDataSource {
     }
 
     /**
-     * 配置@Transactional注解事务
+     * create: 2020/3/12 19:05
+     * description: 配置@Transactional注解事务
      *
-     * @return
+     * @return org.springframework.transaction.PlatformTransactionManager
+     * @author niemingxin
      */
     @Bean
     public PlatformTransactionManager transactionManager() {
@@ -82,16 +84,14 @@ public class MutiplyDataSource {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
         sqlSessionFactory.setDataSource(dynamicDataSource());
-        //sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*/*Mapper.xml"));
         MybatisConfiguration configuration = new MybatisConfiguration();
         //configuration.setDefaultScriptingLanguage(MybatisXMLLanguageDriver.class);
         configuration.setJdbcTypeForNull(JdbcType.NULL);
         configuration.setMapUnderscoreToCamelCase(true);
         configuration.setCacheEnabled(false);
         sqlSessionFactory.setConfiguration(configuration);
-        sqlSessionFactory.setPlugins(new Interceptor[]{ //PerformanceInterceptor(),OptimisticLockerInterceptor()
-                paginationInterceptor() //添加分页功能
-        });
+        //添加分页插件
+        sqlSessionFactory.setPlugins(new Interceptor[]{paginationInterceptor()});
 //        sqlSessionFactory.setGlobalConfig(globalConfiguration());
         return sqlSessionFactory.getObject();
     }

@@ -9,10 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
+ * description: 声明,绑定 队列 交换机 routingKey
+ * create: 2020/3/12 18:50
+ *
  * @author NieMingXin
  * @version 1.0
- * @description
- * @create 2020/3/11 21:01
  */
 @Component
 public class TestQueue {

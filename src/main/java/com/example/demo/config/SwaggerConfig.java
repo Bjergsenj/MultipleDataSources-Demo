@@ -11,6 +11,13 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * description:swagger配置类
+ * create: 2020/3/12 18:50
+ *
+ * @author NieMingXin
+ * @version 1.0
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -20,11 +27,15 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .pathMapping("/")
-                .select() // 选择那些路径和api会生成document
-                .apis(RequestHandlerSelectors.any())// 对所有api进行监控
+                // 选择那些路径和api会生成document
+                .select()
+                // 对所有api进行监控
+                .apis(RequestHandlerSelectors.any())
                 //不显示错误的接口地址
-                .paths(Predicates.not(PathSelectors.regex("/error.*")))//错误路径不监控
-                .paths(PathSelectors.regex("/.*"))// 对根下所有路径进行监控
+                //错误路径不监控
+                .paths(Predicates.not(PathSelectors.regex("/error.*")))
+                // 对根下所有路径进行监控
+                .paths(PathSelectors.regex("/.*"))
                 .build();
     }
 
