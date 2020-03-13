@@ -1,6 +1,7 @@
 package com.example.demo.util;
 
 
+import com.example.demo.common.DistributedLocker;
 import org.redisson.api.RLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
