@@ -57,6 +57,9 @@ spring:
     host: 127.0.0.1
     port: 6379
     timeout: 2000
+    redisson:
+      # 配置单点模式
+      config: classpath:redisson-config.yml
 server:
   port: 8085
 aliyun-oss:
