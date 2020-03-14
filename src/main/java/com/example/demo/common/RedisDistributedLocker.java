@@ -22,7 +22,7 @@ public class RedisDistributedLocker implements DistributedLocker {
 
     @Override
     public boolean lock(String lockKey) {
-        //如果不判断锁的状态直接上锁，那么当前线程会一直等待redis中的key到期
+        //如果锁存在,并且不判断锁的状态直接上锁，那么当前线程会一直等待redis中的key到期
         RLock lock = redissonClient.getLock(lockKey);
         if (lock.isLocked()) {
             return false;
@@ -34,7 +34,7 @@ public class RedisDistributedLocker implements DistributedLocker {
     @Override
     public boolean lock(String lockKey, int leaseTime) {
         RLock lock = redissonClient.getLock(lockKey);
-        //如果不判断锁的状态直接上锁，那么当前线程会一直等待redis中的key到期
+        //如果锁存在,并且不判断锁的状态直接上锁，那么当前线程会一直等待redis中的key到期
         if (lock.isLocked()) {
             return false;
         }
@@ -45,7 +45,7 @@ public class RedisDistributedLocker implements DistributedLocker {
     @Override
     public boolean lock(String lockKey, TimeUnit unit, int timeout) {
         RLock lock = redissonClient.getLock(lockKey);
-        //如果不判断锁的状态直接上锁，那么当前线程会一直等待redis中的key到期
+        //如果锁存在,并且不判断锁的状态直接上锁，那么当前线程会一直等待redis中的key到期
         if (lock.isLocked()) {
             return false;
         }
