@@ -30,12 +30,9 @@ public class TestServiceImpl implements TestService {
     @Override
     public Response<UserInfo> findOne() {
         UserInfo userInfo = userInfoMapper.selectById(1L);
-        Response<UserInfo> response = new Response<>();
-        response.setResult(userInfo);
-        response.setMessage("yes");
         //调用mq
         rabbitTemplate.convertAndSend("directExchange", "directTest", userInfo);
-        return response;
+        return new Response<>(true, "200", "yes", userInfo);
     }
 
     @Override
