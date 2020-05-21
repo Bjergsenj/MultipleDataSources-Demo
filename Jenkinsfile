@@ -10,7 +10,7 @@ pipeline {
 
       }
       steps {
-        sh 'mvn clean package -Dmaven.test.skip=true'
+        sh 'mvn clean -gs settings.xml package -Dmaven.test.skip=true'
         sh 'echo 123'
       }
     }
