@@ -1,10 +1,10 @@
 package com.example.demo.common;
 
 import com.example.demo.annotation.ResponseCode;
+import com.example.demo.constant.Constants;
 import com.example.demo.constant.TestExceptionCode;
 import com.example.demo.enums.ResultCode;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -54,7 +54,7 @@ public class GlobalExceptionHandler {
     public Response<String> bindExceptionHandle(MethodArgumentNotValidException e) {
         log.error("parameter error", e);
         //如果check字段,有多个字段未满足要求,则拼接在一起返回
-        String message = e.getBindingResult().getFieldErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(","));
+        String message = e.getBindingResult().getFieldErrors().stream().map(x -> x.getField() + Constants.COLON + x.getDefaultMessage()).collect(Collectors.joining(Constants.COMMA));
         return Response.buildFail("1", message);
     }
 
@@ -69,6 +69,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ConstraintViolationException.class)
     public Response<String> bindExceptionHandle(ConstraintViolationException e) {
         log.error("parameter error", e);
-        return Response.buildFail("1", e.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.joining(",")));
+        return Response.buildFail("1", e.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.joining(Constants.COMMA)));
     }
 }
