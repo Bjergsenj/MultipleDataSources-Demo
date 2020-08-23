@@ -22,6 +22,7 @@ spring:
     username: admin
     password: 123456
     publisher-confirms: true
+    publisherReturns: true
     virtual-host: /
   freemarker:
     cache: false

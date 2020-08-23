@@ -32,16 +32,13 @@ public class TestServiceImpl implements TestService {
         UserInfo userInfo = userInfoMapper.selectById(1L);
         //调用mq
         rabbitTemplate.convertAndSend("directExchange", "directTest", userInfo);
-        return new Response<>(true, "200", "yes", userInfo);
+        return Response.buildSuccess(userInfo);
     }
 
     @Override
     @DataSource(DataSourceType.MASTER)
     public Response<UserInfo> find() {
         UserInfo userInfo = userInfoMapper.selectById(1L);
-        Response<UserInfo> response = new Response<>();
-        response.setResult(userInfo);
-        response.setMessage("yes");
-        return response;
+        return Response.buildSuccess(userInfo);
     }
 }

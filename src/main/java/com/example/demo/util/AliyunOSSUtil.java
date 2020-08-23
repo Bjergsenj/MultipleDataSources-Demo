@@ -90,7 +90,7 @@ public class AliyunOSSUtil {
                 fileIds.add(prefix + fileName);
             }
         } catch (IOException e) {
-            logger.error("Aliyun OSS uploadFile fail,fileTypeEnum={},bucketName={},storagePath={},prefix={},cause:{}", fileTypeEnum, bucketName, storagePath, prefix, e.getCause());
+            logger.error("Aliyun OSS uploadFile fail,fileTypeEnum={},bucketName={},storagePath={},prefix={},cause:{}", fileTypeEnum, bucketName, storagePath, prefix, e.getMessage());
         } finally {
             ossClient.shutdown();
         }

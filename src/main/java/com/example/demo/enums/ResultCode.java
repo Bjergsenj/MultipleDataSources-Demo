@@ -15,18 +15,18 @@ public enum ResultCode {
     /**
      * 全局异常code
      */
-    error("E00000", "全局异常~~~~~");
+    ERROR("E00000", "全局异常~~~~~");
 
-    private String value;
+    private String code;
     private String message;
 
     ResultCode(String value, String message) {
-        this.value = value;
+        this.code = value;
         this.message = message;
     }
 
-    public String value() {
-        return value;
+    public String getCode() {
+        return code;
     }
 
     public String getMessage() {

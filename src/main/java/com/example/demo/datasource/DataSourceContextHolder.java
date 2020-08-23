@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class DataSourceContextHolder {
-//    private static final String DEFAULT_DATASOURCE = "SlAVE_DATASOURCE";
     private static final ThreadLocal<String> CONTEXT_HOLDER = new ThreadLocal<>();
 
     public static void setDataSource(String dbType) {

@@ -1,7 +1,6 @@
 package com.example.demo.common;
 
 import com.example.demo.enums.ResultCode;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +15,6 @@ import java.io.Serializable;
  * @version 1.0
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Response<T> implements Serializable {
 
@@ -28,15 +26,29 @@ public class Response<T> implements Serializable {
 
     private T data;
 
-    public static <T> Response<T> buildResponse(T data) {
-        return new Response<>(true, ResultCode.FORMAL.value(), null, data);
+    public static <T> Response<T> buildSuccess(T data) {
+        return new Response<>(true, data, ResultCode.FORMAL);
     }
 
-    public void setResult(T data) {
-        this.success = true;
-        this.code = ResultCode.FORMAL.value();
+    public static <T> Response<T> buildFail(ResultCode returnCode) {
+        return new Response<>(false, null, returnCode.getCode(), returnCode.getMessage());
+    }
+
+    public static <T> Response<T> buildFail(String code, String message) {
+        return new Response<>(false, null, code, message);
+    }
+
+    private Response(Boolean success, T data, String code, String message) {
+        this.success = success;
         this.data = data;
-
+        this.code = code;
+        this.message = message;
     }
 
+    private Response(Boolean success, T data, ResultCode resultCode) {
+        this.success = success;
+        this.data = data;
+        this.code = resultCode.getCode();
+        this.message = resultCode.getMessage();
+    }
 }

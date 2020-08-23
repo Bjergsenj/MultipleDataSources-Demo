@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
  * @author NieMingXin
  * @version 1.0
  */
-@Component
 @Slf4j
+@Component
 public class DirectTestListener {
 
     @RabbitListener(queues = "direct")
     public void process(UserInfo hello) {
-        System.out.println("Receiver1  : " + hello);
+        log.info("Receiver1  : " + hello);
     }
 
 }

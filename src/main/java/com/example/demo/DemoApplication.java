@@ -13,9 +13,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author NieMingXin
  * @version 1.0
  */
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@MapperScan("com.example.demo.dao.mapper")
 @EnableSwagger2
+@MapperScan("com.example.demo.dao.mapper")
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class DemoApplication {
 
     public static void main(String[] args) {
