@@ -29,9 +29,9 @@ public enum FileTypeEnum {
      */
     OTHER(5, "其他", "");
 
-    private Integer code;
-    private String message;
-    private String defaultSuffix;
+    private final Integer code;
+    private final String message;
+    private final String defaultSuffix;
 
     FileTypeEnum(Integer code, String message, String defaultSuffix) {
         this.code = code;

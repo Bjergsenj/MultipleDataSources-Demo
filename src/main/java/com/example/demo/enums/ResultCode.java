@@ -17,8 +17,8 @@ public enum ResultCode {
      */
     ERROR("E00000", "全局异常~~~~~");
 
-    private String code;
-    private String message;
+    private final String code;
+    private final String message;
 
     ResultCode(String value, String message) {
         this.code = value;

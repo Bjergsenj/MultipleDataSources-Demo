@@ -1,10 +1,8 @@
 package com.example.demo;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * description: 启动类
@@ -13,8 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author NieMingXin
  * @version 1.0
  */
-@EnableSwagger2
-@MapperScan("com.example.demo.dao.mapper")
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class DemoApplication {
 

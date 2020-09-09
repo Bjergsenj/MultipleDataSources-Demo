@@ -6,11 +6,9 @@ import com.example.demo.constant.TestExceptionCode;
 import com.example.demo.enums.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
 
@@ -21,12 +19,11 @@ import java.util.stream.Collectors;
  * @author NieMingXin
  */
 @Slf4j
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(Exception.class)
-    @ResponseBody
     public Response<String> handle(Exception e) {
         log.error("GlobalException", e);
         return Response.buildFail(ResultCode.ERROR.getCode(), e.getMessage());
@@ -36,7 +33,6 @@ public class GlobalExceptionHandler {
      * 处理全局异常handler, ApiException为业务异常
      */
     @ExceptionHandler(ApiException.class)
-    @ResponseBody
     public Response<String> handle(ApiException e) {
         log.error("ApiException", e);
         return Response.buildFail(e.getClass().isAnnotationPresent(ResponseCode.class) ? e.getClass().getAnnotation(ResponseCode.class).value() : TestExceptionCode.TEST_CODE, e.getMessage());
@@ -54,7 +50,7 @@ public class GlobalExceptionHandler {
     public Response<String> bindExceptionHandle(MethodArgumentNotValidException e) {
         log.error("parameter error", e);
         //如果check字段,有多个字段未满足要求,则拼接在一起返回
-        String message = e.getBindingResult().getFieldErrors().stream().map(x -> x.getField() + Constants.COLON + x.getDefaultMessage()).collect(Collectors.joining(Constants.COMMA));
+        String message = e.getBindingResult().getFieldErrors().stream().map(x -> x.getField() + Constants.SPACE + Constants.COLON + x.getDefaultMessage()).collect(Collectors.joining(Constants.COMMA));
         return Response.buildFail("1", message);
     }
 
@@ -69,6 +65,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ConstraintViolationException.class)
     public Response<String> bindExceptionHandle(ConstraintViolationException e) {
         log.error("parameter error", e);
-        return Response.buildFail("1", e.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.joining(Constants.COMMA)));
+        return Response.buildFail("1", e.getMessage());
     }
 }
