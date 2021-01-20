@@ -53,7 +53,7 @@ public class LimitAspect {
         LimitType limitType = limit.limitType();
         String key = limit.key();
         if (limitType == LimitType.EL && key.contains(Constants.HASH)) {
-            key = generateKeyBySpEL(limit.key(), joinPoint);
+            key = generateKeyBySpEl(limit.key(), joinPoint);
         }
         List<String> keys = Collections.singletonList(limit.prefix() + Constants.COLON + key);
         String luaScript = buildLuaScript();
@@ -86,7 +86,7 @@ public class LimitAspect {
                 "\nreturn c;";
     }
 
-    public String generateKeyBySpEL(String elString, ProceedingJoinPoint joinPoint) {
+    public String generateKeyBySpEl(String elString, ProceedingJoinPoint joinPoint) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         //用于SpEL表达式解析.
         SpelExpressionParser parser = new SpelExpressionParser();

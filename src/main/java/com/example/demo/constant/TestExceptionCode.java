@@ -8,5 +8,10 @@ package com.example.demo.constant;
  * @version 1.0
  */
 public class TestExceptionCode {
-    public static final String TEST_CODE ="E11111";
+
+    private TestExceptionCode() {
+
+    }
+
+    public static final String TEST_CODE = "E11111";
 }

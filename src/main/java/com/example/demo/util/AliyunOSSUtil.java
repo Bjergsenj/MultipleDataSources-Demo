@@ -41,11 +41,11 @@ public class AliyunOSSUtil {
     /**
      * 文件不存在
      */
-    private final String NO_SUCH_KEY = "NoSuchKey";
+    private static final String NO_SUCH_KEY = "NoSuchKey";
     /**
      * 存储空间不存在
      */
-    private final String NO_SUCH_BUCKET = "NoSuchBucket";
+    private static final String NO_SUCH_BUCKET = "NoSuchBucket";
 
     /**
      * create: 2020/2/18 12:08
@@ -178,7 +178,7 @@ public class AliyunOSSUtil {
             logger.error("errorCode:{},Message:{},requestID:{}", oe.getErrorCode(), oe.getMessage(), oe.getRequestId());
             if (oe.getErrorCode().equals(NO_SUCH_KEY)) {
                 throw new OSSNoSuchKeyException();
-            } else if (oe.getErrorCode().equals(NO_SUCH_BUCKET)) {
+            } else if (oe.getErrorCode().equals(AliyunOSSUtil.NO_SUCH_BUCKET)) {
                 throw new OSSNoSuchBucketException();
             } else {
                 throw new ApiException();

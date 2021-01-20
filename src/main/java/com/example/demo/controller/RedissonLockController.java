@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch;
  * @version 1.0
  */
 @RestController
-@Api(tags = "redisson", description = "redis分布式锁控制器")
+@Api(tags = "redisson", value = "redis分布式锁控制器")
 @RequestMapping("/redisson")
 @Slf4j
 public class RedissonLockController {
@@ -63,15 +63,15 @@ public class RedissonLockController {
     public void locsk() {
         boolean lock = RedisLockUtil.lock("test1", 10);
         if (lock) {
-            System.out.println("获取锁成功");
+            log.info("获取锁成功");
             long start = System.currentTimeMillis();
             // 计数器
             boolean test = RedisLockUtil.tryLock("test", 5, 1000);
             if (!test) {
-                System.out.println("try lock 失败 等待 " + (System.currentTimeMillis() - start) / 1000 + "秒");
+                log.info("try lock 失败 等待 " + (System.currentTimeMillis() - start) / 1000 + "秒");
             }
         } else {
-            System.out.println("获取锁失败");
+            log.info("获取锁失败");
         }
     }
 
