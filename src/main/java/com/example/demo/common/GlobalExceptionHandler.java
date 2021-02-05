@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
      * description: @Validated check param和header异常
      *
      * @param e:e
-     * @return cn.com.pg.rtir.common.result.ResultWrapper<java.lang.String>
+     * @return  com.example.demo.common.Response<java.lang.String>
      * @author niemingxin
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
